@@ -541,13 +541,18 @@ footer {
   margin-top: 12px;
 }
 .socials a {
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   background: var(--blue);
   color: #fff;
   border-radius: 50%;
   display: grid;
   place-items: center;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+.socials a:hover {
+  transform: translateY(-3px) scale(1.1);
+  background: #0558bb;
 }
 .socials svg {
   width: 14px;
