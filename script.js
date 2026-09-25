@@ -306,17 +306,22 @@ setLanguage(select.value);
 select.addEventListener("change", () => setLanguage(select.value));
 const menuButton = document.querySelector(".menu-button"),
   nav = document.querySelector(".main-nav");
-menuButton.addEventListener("click", () => {
-  const open = nav.classList.toggle("open");
-  menuButton.setAttribute("aria-expanded", open);
+const setMenuOpen = (open) => {
+  nav.classList.toggle("open", open);
+  menuButton.setAttribute("aria-expanded", String(open));
   menuButton.innerHTML = `<i data-lucide="${open ? "x" : "menu"}"></i>`;
+  document.body.classList.toggle("nav-open", open);
   lucide.createIcons();
-});
+};
+menuButton.addEventListener("click", () =>
+  setMenuOpen(!nav.classList.contains("open")),
+);
 document
   .querySelectorAll(".main-nav a")
-  .forEach((a) =>
-    a.addEventListener("click", () => nav.classList.remove("open")),
-  );
+  .forEach((a) => a.addEventListener("click", () => setMenuOpen(false)));
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 980) setMenuOpen(false);
+});
 const modal = document.querySelector(".quote-modal");
 document
   .querySelectorAll(".quote-trigger")
