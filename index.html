@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>SD Sanitaire Sàrl</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="logo" href="#accueil"
+          ><img src="logo.png" alt="SD Sanitaire Sàrl" class="site-logo" /></a
+        ><button
+          class="menu-button"
+          type="button"
+          aria-label="Menu"
+          aria-expanded="false"
+        >
+          <i data-lucide="menu"></i>
+        </button>
+        <nav class="main-nav">
+          <a class="active" href="#accueil" data-i18n="home">Accueil</a
+          ><a href="#services" data-i18n="services">Nos services</a
+          ><a href="#realisations" data-i18n="projects">Réalisations</a
+          ><a href="#apropos" data-i18n="about">À propos</a
+          ><a href="#contact" data-i18n="contact">Contact</a>
+        </nav>
+        <select class="language-select" aria-label="Language">
+          <option value="fr">FR</option>
+          <option value="de">DE</option>
+          <option value="it">IT</option>
+          <option value="en">EN</option></select
+        ><a class="phone-pill" href="tel:0794877528"
+          ><i data-lucide="phone"></i><span>079 487 75 28</span></a
+        >
+      </div>
+    </header>
+    <main>
+      <section class="hero" id="accueil">
+        <div class="container hero-content">
+          <p class="eyebrow light">
+            <span>CH</span
+            ><span data-i18n="region">LAUSANNE &amp; CANTON DE VAUD</span>
+          </p>
+          <h1 data-i18n="heroTitle">
+            Votre spécialiste <em>sanitaire</em> à Lausanne et dans le canton de
+            Vaud.
+          </h1>
+          <p class="hero-copy" data-i18n="heroCopy">
+            Dépannage, entretien et rénovation pour les particuliers comme les
+            professionnels. Un travail précis, rapide et durable.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="tel:+41794877528"
+              ><i data-lucide="phone"></i
+              ><span data-i18n="call">Appeler maintenant</span></a
+            ><button class="button secondary quote-trigger">
+              <i data-lucide="file-text"></i
+              ><span data-i18n="quote">Demander une offre</span>
+            </button>
+          </div>
+        </div>
+        <div class="container hero-highlights">
+          <div>
+            <span class="round-icon"><i data-lucide="clock-3"></i></span>
+            <p>
+              <b data-i18n="fast">Intervention rapide</b
+              ><small data-i18n="fastSub">Dans tout le canton de Vaud</small>
+            </p>
+          </div>
+          <div>
+            <span class="round-icon"><i data-lucide="shield-check"></i></span>
+            <p>
+              <b data-i18n="quality">Travail de qualité</b
+              ><small data-i18n="qualitySub">Fiable et professionnel</small>
+            </p>
+          </div>
+          <div>
+            <span class="round-icon"><i data-lucide="users-round"></i></span>
+            <p>
+              <b data-i18n="service">À votre service</b
+              ><small data-i18n="serviceSub">Particuliers et entreprises</small>
+            </p>
+          </div>
+        </div>
+      </section>
+      <section class="section services" id="services">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow" data-i18n="servicesEyebrow">NOS SERVICES</p>
+              <h2 data-i18n="servicesTitle">
+                Des solutions sanitaires complètes
+              </h2>
+            </div>
+            <a class="text-link" href="#contact"
+              ><span data-i18n="allServices">Voir tous nos services</span
+              ><i data-lucide="arrow-right"></i
+            ></a>
+          </div>
+          <div class="service-grid">
+            <article class="service-card">
+              <img
+                src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&w=600&q=80"
+                alt="Robinet"
+              /><span><i data-lucide="wrench"></i></span>
+              <h3 data-i18n="repair">Dépannage</h3>
+              <p data-i18n="repairText">
+                Intervention rapide en cas de fuite, bouchon ou panne.
+              </p>
+            </article>
+            <article class="service-card">
+              <img
+                src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80"
+                alt="Plomberie"
+              /><span><i data-lucide="settings"></i></span>
+              <h3 data-i18n="maintenance">Entretien</h3>
+              <p data-i18n="maintenanceText">
+                Maintenance de vos installations sanitaires.
+              </p>
+            </article>
+            <article class="service-card">
+              <img
+                src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=600&q=80"
+                alt="Salle de bain"
+              /><span><i data-lucide="bath"></i></span>
+              <h3 data-i18n="renovation">Rénovation</h3>
+              <p data-i18n="renovationText">
+                Transformation complète de votre salle de bain.
+              </p>
+            </article>
+            <article class="service-card">
+              <img
+                src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=600&q=80"
+                alt="Chauffage"
+              /><span><i data-lucide="flame"></i></span>
+              <h3 data-i18n="heating">Chauffage</h3>
+              <p data-i18n="heatingText">
+                Installation et entretien de systèmes de chauffage.
+              </p>
+            </article>
+            <article class="service-card">
+              <img
+                src="https://images.unsplash.com/photo-1508873696983-2dfd5898f08b?auto=format&fit=crop&w=600&q=80"
+                alt="Fuite"
+              /><span><i data-lucide="waves"></i></span>
+              <h3 data-i18n="water">Dégâts des eaux</h3>
+              <p data-i18n="waterText">Recherche et réparation de fuites.</p>
+            </article>
+            <article class="service-card">
+              <img
+                src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=600&q=80"
+                alt="Canalisation"
+              /><span><i data-lucide="circle-dot-dashed"></i></span>
+              <h3 data-i18n="drain">Débouchage</h3>
+              <p data-i18n="drainText">
+                Canalisations et évacuations libérées.
+              </p>
+            </article>
+          </div>
+          <div class="bricoles-banner">
+            <div class="bricoles-info">
+              <h3><i data-lucide="tool"></i> <span data-i18n="bricolesTitle">Petites interventions & bricoles sanitaires</span></h3>
+              <ul class="bricoles-list">
+                <li><i data-lucide="check-circle-2"></i> <span data-i18n="bricole1">Installation machine à laver</span></li>
+                <li><i data-lucide="check-circle-2"></i> <span data-i18n="bricole2">Joints silicone</span></li>
+                <li><i data-lucide="check-circle-2"></i> <span data-i18n="bricole3">Réparer / changer robinetterie</span></li>
+                <li><i data-lucide="check-circle-2"></i> <span data-i18n="bricole4">Déboucher cuisine / toilette</span></li>
+              </ul>
+            </div>
+            <button class="button primary quote-trigger"><span data-i18n="bricolesBtn">Demander une intervention</span></button>
+          </div>
+        </div>
+      </section>
+      <section class="about" id="apropos">
+        <div class="about-gallery">
+          <img
+            class="main-photo"
+            src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=1200&q=85"
+            alt="Salle de bain"
+          />
+          <div class="gallery-note">
+            <b data-i18n="gallery">Rénovation complète</b
+            ><span data-i18n="beforeAfter">Avant → Après</span>
+          </div>
+        </div>
+        <div class="about-copy">
+          <p class="eyebrow" data-i18n="why">POURQUOI NOUS CHOISIR ?</p>
+          <h2 data-i18n="aboutTitle">Une entreprise locale et de confiance.</h2>
+          <p data-i18n="aboutCopy">
+            SD SANITAIRE Sàrl met son savoir-faire à votre service pour tous vos
+            travaux sanitaires à Lausanne et dans le canton de Vaud. Nous
+            garantissons un travail soigné, des solutions durables et un service
+            client réactif.
+          </p>
+          <ul class="check-list">
+            <li data-i18n="a1">Plusieurs années d'expérience</li>
+            <li data-i18n="a2">Intervention rapide à Lausanne et alentours</li>
+            <li data-i18n="a3">Travail soigné et matériaux de qualité</li>
+            <li data-i18n="a4">Conseils personnalisés</li>
+            <li data-i18n="a5">Devis gratuit et sans engagement</li>
+          </ul>
+        </div>
+      </section>
+      <section class="section projects" id="realisations">
+        <div class="container">
+          <div class="section-heading projects-heading">
+            <div>
+              <p class="eyebrow" data-i18n="projectsEyebrow">
+                NOS RÉALISATIONS
+              </p>
+              <h2 data-i18n="projectsTitle">Quelques-uns de nos projets</h2>
+            </div>
+            <a class="text-link" href="#contact"
+              ><span data-i18n="moreProjects">Voir plus de réalisations</span
+              ><i data-lucide="arrow-right"></i
+            ></a>
+          </div>
+          <div class="filters">
+            <button class="filter active" data-filter="all" data-i18n="all">
+              Tous</button
+            ><button class="filter" data-filter="bath" data-i18n="bath">
+              Salles de bain</button
+            ><button class="filter" data-filter="sanitary" data-i18n="sanitary">
+              Sanitaire</button
+            ><button class="filter" data-filter="heating" data-i18n="heating">
+              Chauffage</button
+            ><button class="filter" data-filter="repair" data-i18n="repair">
+              Dépannage
+            </button>
+          </div>
+          <div class="project-grid">
+            <img
+              data-category="bath"
+              src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=700&q=80"
+              alt="Douche"
+            /><img
+              data-category="bath"
+              src="https://images.unsplash.com/photo-1604709177225-055f99402ea3?auto=format&fit=crop&w=700&q=80"
+              alt="Bain"
+            /><img
+              data-category="sanitary"
+              src="https://images.unsplash.com/photo-1584622781564-1d9878b8c689?auto=format&fit=crop&w=700&q=80"
+              alt="Robinet"
+            /><img
+              data-category="heating"
+              src="https://images.unsplash.com/photo-1581783898377-1c85bf937427?auto=format&fit=crop&w=700&q=80"
+              alt="Installation"
+            /><img
+              data-category="bath"
+              src="https://images.unsplash.com/photo-1615874694520-474822394e73?auto=format&fit=crop&w=700&q=80"
+              alt="Lavabo"
+            /><img
+              data-category="repair"
+              src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=700&q=80"
+              alt="Réparation"
+            />
+          </div>
+        </div>
+      </section>
+      <section class="cta" id="contact">
+        <div class="container cta-inner">
+          <div>
+            <h2 data-i18n="ctaTitle">Besoin d'un sanitaire à Lausanne ?</h2>
+            <p data-i18n="ctaCopy">
+              Contactez-nous dès maintenant pour un devis gratuit ou une
+              intervention rapide.
+            </p>
+          </div>
+          <div class="cta-actions">
+            <button class="button white quote-trigger">
+              <i data-lucide="file-text"></i
+              ><span data-i18n="quote">Demander une offre</span></button
+            ><a class="button primary" href="tel:+41794877528"
+              ><i data-lucide="phone"></i>+41 79 487 75 28</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="container footer-grid">
+        <a class="logo footer-logo" href="#accueil"
+          ><img src="logo.png" alt="SD Sanitaire Sàrl" class="site-logo"
+        /></a>
+        <div>
+          <b data-i18n="footerAddress">Adresse & Contact</b>
+          <p style="margin-top: 10px"><i data-lucide="map-pin"></i>Rue de la Borde 36<br />1018 Lausanne, Suisse</p>
+          <p><i data-lucide="phone"></i><a href="tel:0794877528">079 487 75 28</a></p>
+          <p><i data-lucide="mail"></i><a href="mailto:infosdsanitaire@gmail.com">infosdsanitaire@gmail.com</a></p>
+        </div>
+        <div>
+          <b data-i18n="footerHoursTitle">Horaires d'ouverture</b>
+          <p style="margin-top: 10px"><i data-lucide="clock"></i><span data-i18n="footerHoursWeek">Lun - Ven : 7:00 - 18:00</span></p>
+          <p><i data-lucide="calendar"></i><span data-i18n="footerHoursWeekend">Sam - Dim : Sur rendez-vous</span></p>
+        </div>
+        <div class="footer-nav">
+          <b data-i18n="footerLinks">Liens utiles</b>
+          <a href="#accueil" data-i18n="home" style="margin-top: 10px">Accueil</a
+          ><a href="#services" data-i18n="services">Nos services</a
+          ><a href="#realisations" data-i18n="projects">Réalisations</a
+          ><a href="#apropos" data-i18n="about">À propos</a
+          ><a href="#contact" data-i18n="contact">Contact</a>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <span data-i18n="rights"
+          >© 2026 SD SANITAIRE Sàrl. Tous droits réservés.</span
+        ><span data-i18n="legal"
+          >Mentions légales | Protection des données</span
+        >
+      </div>
+    </footer>
+    <dialog class="quote-modal">
+      <button class="close-modal"><i data-lucide="x"></i></button>
+      <p class="eyebrow" data-i18n="freeQuote">DEVIS GRATUIT</p>
+      <h2 data-i18n="quote">Demander une offre</h2>
+      <p data-i18n="modalCopy">
+        Décrivez brièvement votre besoin. Nous vous recontactons rapidement.
+      </p>
+      <form id="quote-form">
+        <label
+          ><span data-i18n="name">Nom complet</span
+          ><input required placeholder="Votre nom" /></label
+        ><label
+          ><span data-i18n="phone">Téléphone</span
+          ><input required placeholder="+41 ..." /></label
+        ><label
+          ><span data-i18n="request">Votre demande</span
+          ><textarea
+            required
+            rows="4"
+            data-i18n-placeholder="requestPlaceholder"
+            placeholder="Dépannage, rénovation, entretien..."
+          ></textarea></label
+        ><button class="button primary" type="submit">
+          <span data-i18n="send">Envoyer la demande</span
+          ><i data-lucide="arrow-right"></i>
+        </button>
+      </form>
+      <div class="form-success" hidden>
+        <i data-lucide="circle-check"></i>
+        <h3 data-i18n="thanks">Merci pour votre demande.</h3>
+        <p data-i18n="thanksCopy">
+          Nous vous contacterons dans les plus brefs délais.
+        </p>
+      </div>
+    </dialog>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script defer src="script.js"></script>
+  </body>
+</html>
