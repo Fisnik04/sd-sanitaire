@@ -288,14 +288,21 @@ const copy = {
 };
 
 const emailCopy = {
- fr: ['Préparer un email', 'Ce formulaire prépare un email. Vérifiez puis envoyez-le depuis votre messagerie, ou contactez-nous au +41 79 487 75 28.'],
- de: ['E-Mail vorbereiten', 'Dieses Formular bereitet eine E-Mail vor. Bitte prüfen und in Ihrem E-Mail-Programm senden, oder +41 79 487 75 28 anrufen.'],
- it: ['Prepara email', 'Il modulo prepara una email. Controllatela e inviatela dalla vostra app email, oppure chiamate +41 79 487 75 28.'],
- en: ['Prepare email', 'This form prepares an email. Review and send it in your email app, or call +41 79 487 75 28.']
+ fr: ['Envoyer la demande', 'Décrivez votre besoin et ajoutez des photos si nécessaire. Votre demande sera transmise à notre équipe.'],
+ de: ['Anfrage senden', 'Beschreiben Sie Ihr Anliegen und fügen Sie bei Bedarf Fotos hinzu. Ihre Anfrage wird an unser Team weitergeleitet.'],
+ it: ['Invia richiesta', 'Descrivete le vostre esigenze e aggiungete delle foto se necessario. La richiesta sarà inoltrata al nostro team.'],
+ en: ['Send request', 'Describe what you need and optionally add photos. Your request will be forwarded to our team.']
 };
 for (const [lang, values] of Object.entries(emailCopy)) {
  copy[lang].send = values[0]; copy[lang].modalCopy = values[1];
 }
+const photoCopy = {
+ fr: { emailLabel: 'Votre email', photosTitle: 'Photos (facultatif)', photosHelp: 'Jusqu’à 3 photos, 10 Mo au total. JPG, PNG, WebP, HEIC ou HEIF.', photo1: 'Photo 1', photo2: 'Photo 2', photo3: 'Photo 3', clearPhotos: 'Retirer les photos', photoSizeError: 'Les photos dépassent 10 Mo au total. Choisissez des fichiers plus petits.', photoTypeError: 'Choisissez uniquement des photos JPG, PNG, WebP, HEIC ou HEIF.', formNotice: 'Vos coordonnées et photos sont transmises via FormSubmit à infosdsanitaire@gmail.com pour traiter votre demande. Une vérification anti-spam peut vous être proposée.' },
+ de: { emailLabel: 'Ihre E-Mail', photosTitle: 'Fotos (optional)', photosHelp: 'Bis zu 3 Fotos, insgesamt 10 MB. JPG, PNG, WebP, HEIC oder HEIF.', photo1: 'Foto 1', photo2: 'Foto 2', photo3: 'Foto 3', clearPhotos: 'Fotos entfernen', photoSizeError: 'Die Fotos überschreiten insgesamt 10 MB. Wählen Sie kleinere Dateien.', photoTypeError: 'Bitte nur JPG-, PNG-, WebP-, HEIC- oder HEIF-Fotos auswählen.', formNotice: 'Ihre Kontaktdaten und Fotos werden über FormSubmit an infosdsanitaire@gmail.com zur Bearbeitung Ihrer Anfrage übermittelt. Eventuell folgt eine Spam-Prüfung.' },
+ it: { emailLabel: 'La vostra email', photosTitle: 'Foto (facoltative)', photosHelp: 'Fino a 3 foto, 10 MB in totale. JPG, PNG, WebP, HEIC o HEIF.', photo1: 'Foto 1', photo2: 'Foto 2', photo3: 'Foto 3', clearPhotos: 'Rimuovi foto', photoSizeError: 'Le foto superano 10 MB in totale. Scegliete file più piccoli.', photoTypeError: 'Scegliete solo foto JPG, PNG, WebP, HEIC o HEIF.', formNotice: 'I vostri dati di contatto e le foto vengono trasmessi tramite FormSubmit a infosdsanitaire@gmail.com per gestire la richiesta. Potrebbe essere richiesta una verifica anti-spam.' },
+ en: { emailLabel: 'Your email', photosTitle: 'Photos (optional)', photosHelp: 'Up to 3 photos, 10 MB in total. JPG, PNG, WebP, HEIC or HEIF.', photo1: 'Photo 1', photo2: 'Photo 2', photo3: 'Photo 3', clearPhotos: 'Remove photos', photoSizeError: 'Photos exceed 10 MB in total. Please choose smaller files.', photoTypeError: 'Choose only JPG, PNG, WebP, HEIC or HEIF photos.', formNotice: 'Your contact details and photos are sent through FormSubmit to infosdsanitaire@gmail.com to process your request. An anti-spam check may follow.' }
+};
+for (const lang of Object.keys(photoCopy)) Object.assign(copy[lang], photoCopy[lang]);
 const refreshIcons = () => window.lucide?.createIcons();
 const setLanguage = (lang) => {
   if (!Object.hasOwn(copy, lang)) lang = 'fr';
@@ -347,11 +354,31 @@ modal.addEventListener("click", (e) => {
   const rect = modal.getBoundingClientRect();
   if (e.target === modal && (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom)) modal.close();
 });
-document.getElementById("quote-form").addEventListener("submit", (e) => {
-  e.preventDefault();
-  const data = new FormData(e.currentTarget);
-  const body = [data.get('name'), data.get('phone'), '', data.get('request')].join('\n');
-  window.location.href = 'mailto:infosdsanitaire@gmail.com?subject=' + encodeURIComponent('Demande de devis — SD Sanitaire') + '&body=' + encodeURIComponent(body);
+const photoInputs = [...document.querySelectorAll('.photo-fields input[type="file"]')];
+const photoError = document.getElementById('photo-error');
+function validatePhotos() {
+  const files = photoInputs.flatMap(input => [...input.files]);
+  const invalidType = files.some(file => !/\.(jpe?g|png|webp|heic|heif)$/i.test(file.name));
+  const tooLarge = files.reduce((total, file) => total + file.size, 0) > 10000000;
+  const errorKey = invalidType ? 'photoTypeError' : tooLarge ? 'photoSizeError' : '';
+  photoError.hidden = !errorKey;
+  photoError.textContent = errorKey ? copy[document.documentElement.lang][errorKey] : '';
+  photoInputs.forEach(input => input.setAttribute('aria-invalid', String(Boolean(errorKey))));
+  return !errorKey;
+}
+photoInputs.forEach(input => input.addEventListener('change', validatePhotos));
+select.addEventListener('change', validatePhotos);
+document.querySelector('.clear-photos').addEventListener('click', () => {
+  photoInputs.forEach(input => { input.value = ''; });
+  validatePhotos();
+});
+document.getElementById('quote-form').addEventListener('submit', event => {
+  if (!validatePhotos()) {
+    event.preventDefault();
+    photoInputs.find(input => input.files.length)?.focus();
+  }
+  // A valid form uses the provider's multipart POST and anti-spam flow.
+  // Do not report delivery before the provider has processed the request.
 });
 const projects = document.querySelectorAll(".project-grid img");
 document.querySelectorAll(".filter").forEach((b) =>

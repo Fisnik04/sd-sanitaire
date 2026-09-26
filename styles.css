@@ -1160,3 +1160,10 @@ input:focus, textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 3px #
   .service-card:hover, .service-card:hover img, .project-grid img:hover,
   .button:hover, .button:hover svg, .text-link:hover svg { transform: none; }
 }
+.photo-fields { min-width: 0; margin: 4px 0; padding: 16px; border: 1px dashed #adc9e9; border-radius: 12px; background: #f5f9ff; display: grid; gap: 12px; }
+.photo-fields legend { padding: 0 6px; font-size: 14px; font-weight: 700; }
+.photo-fields p, .form-notice { margin: 0; font-size: 12px; line-height: 1.6; color: var(--muted); overflow-wrap: anywhere; }
+.photo-fields input[type="file"] { min-width: 0; padding: 8px; background: white; font-size: 13px; }
+.photo-fields input::file-selector-button { border: 0; border-radius: 6px; padding: 10px; margin-right: 8px; background: #e6effc; color: #103069; font: inherit; cursor: pointer; }
+.clear-photos { justify-self: start; min-height: 44px; border: 0; background: transparent; padding: 6px 0; color: #075bc4; font-size: 13px; text-decoration: underline; }
+.photo-fields .photo-error { color: #a32020; font-weight: 600; }

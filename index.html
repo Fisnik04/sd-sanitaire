@@ -276,16 +276,29 @@
     <p class="eyebrow" data-i18n="freeQuote">DEVIS GRATUIT</p>
     <h2 id="quote-title" data-i18n="quote">Demander une offre</h2>
     <p data-i18n="modalCopy">
-      Ce formulaire prépare un email. Vérifiez puis envoyez-le depuis votre messagerie,
-      ou contactez-nous au +41 79 487 75 28.
+      Décrivez votre besoin et ajoutez des photos si nécessaire. Votre demande sera transmise à notre équipe.
     </p>
-    <form id="quote-form">
+    <form id="quote-form" action="https://formsubmit.co/infosdsanitaire@gmail.com" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="_subject" value="Nouvelle demande de devis — SD Sanitaire" />
+      <input type="hidden" name="_template" value="table" />
       <label><span data-i18n="name">Nom complet</span><input name="name" autocomplete="name" required placeholder="Votre nom" /></label><label><span
-          data-i18n="phone">Téléphone</span><input name="phone" type="tel" autocomplete="tel" required placeholder="+41 ..." /></label><label><span
+          data-i18n="phone">Téléphone</span><input name="phone" type="tel" autocomplete="tel" required placeholder="+41 ..." /></label>
+      <label><span data-i18n="emailLabel">Votre email</span><input name="email" type="email" autocomplete="email" inputmode="email" required placeholder="vous@exemple.ch" /></label><label><span
           data-i18n="request">Votre demande</span><textarea name="request" required rows="4" data-i18n-placeholder="requestPlaceholder"
-          placeholder="Dépannage, rénovation, entretien..."></textarea></label><button class="button primary"
+          placeholder="Dépannage, rénovation, entretien..."></textarea></label>
+      <fieldset class="photo-fields">
+        <legend data-i18n="photosTitle">Photos (facultatif)</legend>
+        <p id="photos-help" data-i18n="photosHelp">Jusqu’à 3 photos, 10 Mo au total. JPG, PNG, WebP, HEIC ou HEIF.</p>
+        <label><span data-i18n="photo1">Photo 1</span><input type="file" name="attachment" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.heic,.heif" aria-describedby="photos-help photo-error" /></label>
+        <label><span data-i18n="photo2">Photo 2</span><input type="file" name="attachment2" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.heic,.heif" aria-describedby="photos-help photo-error" /></label>
+        <label><span data-i18n="photo3">Photo 3</span><input type="file" name="attachment3" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.heic,.heif" aria-describedby="photos-help photo-error" /></label>
+        <button class="clear-photos" type="button" data-i18n="clearPhotos">Retirer les photos</button>
+        <p id="photo-error" class="photo-error" role="alert" hidden></p>
+      </fieldset>
+      <p class="form-notice" data-i18n="formNotice">Vos coordonnées et photos sont transmises via FormSubmit à infosdsanitaire@gmail.com pour traiter votre demande. Une vérification anti-spam peut vous être proposée.</p>
+      <button class="button primary"
         type="submit">
-        <span data-i18n="send">Préparer un email</span><i data-lucide="arrow-right"></i>
+        <span data-i18n="send">Envoyer la demande</span><i data-lucide="arrow-right"></i>
       </button>
     </form>
 
