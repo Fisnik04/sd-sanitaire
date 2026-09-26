@@ -7,7 +7,7 @@ const copy = {
     contact: "Contact",
     region: "LAUSANNE & CANTON DE VAUD",
     heroTitle:
-      "Votre spécialiste <em>sanitaire</em> à Lausanne et dans le canton de Vaud.",
+      "Votre spécialiste <em>sanitaire</em> à Lausanne.",
     heroCopy:
       "Dépannage, entretien et rénovation pour les particuliers comme les professionnels. Un travail précis, rapide et durable.",
     call: "Appeler maintenant",
@@ -79,7 +79,7 @@ const copy = {
     contact: "Kontakt",
     region: "LAUSANNE & KANTON WAADT",
     heroTitle:
-      "Ihr <em>Sanitär</em>-Spezialist in Lausanne und im Kanton Waadt.",
+      "Ihr <em>Sanitär</em>-Spezialist in Lausanne.",
     heroCopy:
       "Reparatur, Wartung und Renovation für Privatpersonen und Unternehmen. Präzise, schnelle und langlebige Arbeit.",
     call: "Jetzt anrufen",
@@ -151,7 +151,7 @@ const copy = {
     contact: "Contatto",
     region: "LOSANNA & CANTONE DI VAUD",
     heroTitle:
-      "Il vostro specialista <em>sanitario</em> a Losanna e nel Canton Vaud.",
+      "Il vostro specialista <em>sanitario</em> a Losanna.",
     heroCopy:
       "Riparazione, manutenzione e ristrutturazione per privati e professionisti. Un lavoro preciso, rapido e duraturo.",
     call: "Chiama ora",
@@ -223,7 +223,7 @@ const copy = {
     contact: "Contact",
     region: "LAUSANNE & CANTON OF VAUD",
     heroTitle:
-      "Your <em>plumbing</em> specialist in Lausanne and the Canton of Vaud.",
+      "Your <em>plumbing</em> specialist in Lausanne.",
     heroCopy:
       "Repairs, maintenance and renovations for homeowners and businesses. Precise, prompt and durable work.",
     call: "Call now",
@@ -287,7 +287,18 @@ const copy = {
   },
 };
 
+const emailCopy = {
+ fr: ['Préparer un email', 'Ce formulaire prépare un email. Vérifiez puis envoyez-le depuis votre messagerie, ou contactez-nous au +41 79 487 75 28.'],
+ de: ['E-Mail vorbereiten', 'Dieses Formular bereitet eine E-Mail vor. Bitte prüfen und in Ihrem E-Mail-Programm senden, oder +41 79 487 75 28 anrufen.'],
+ it: ['Prepara email', 'Il modulo prepara una email. Controllatela e inviatela dalla vostra app email, oppure chiamate +41 79 487 75 28.'],
+ en: ['Prepare email', 'This form prepares an email. Review and send it in your email app, or call +41 79 487 75 28.']
+};
+for (const [lang, values] of Object.entries(emailCopy)) {
+ copy[lang].send = values[0]; copy[lang].modalCopy = values[1];
+}
+const refreshIcons = () => window.lucide?.createIcons();
 const setLanguage = (lang) => {
+  if (!Object.hasOwn(copy, lang)) lang = 'fr';
   document.documentElement.lang = lang;
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const text = copy[lang][el.dataset.i18n];
@@ -296,12 +307,14 @@ const setLanguage = (lang) => {
   document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
     el.placeholder = copy[lang][el.dataset.i18nPlaceholder] || el.placeholder;
   });
-  localStorage.setItem("sd-language", lang);
-  lucide.createIcons();
+  try { localStorage.setItem("sd-language", lang); } catch {}
+  refreshIcons();
 };
-lucide.createIcons();
+refreshIcons();
 const select = document.querySelector(".language-select");
-select.value = localStorage.getItem("sd-language") || "fr";
+let savedLanguage = 'fr';
+try { savedLanguage = localStorage.getItem('sd-language') || 'fr'; } catch {}
+select.value = Object.hasOwn(copy, savedLanguage) ? savedLanguage : 'fr';
 setLanguage(select.value);
 select.addEventListener("change", () => setLanguage(select.value));
 const menuButton = document.querySelector(".menu-button"),
@@ -311,7 +324,8 @@ const setMenuOpen = (open) => {
   menuButton.setAttribute("aria-expanded", String(open));
   menuButton.innerHTML = `<i data-lucide="${open ? "x" : "menu"}"></i>`;
   document.body.classList.toggle("nav-open", open);
-  lucide.createIcons();
+  document.querySelectorAll('main, footer, .mobile-contact').forEach(el => { el.inert = open; });
+  refreshIcons();
 };
 menuButton.addEventListener("click", () =>
   setMenuOpen(!nav.classList.contains("open")),
@@ -325,17 +339,19 @@ window.addEventListener("resize", () => {
 const modal = document.querySelector(".quote-modal");
 document
   .querySelectorAll(".quote-trigger")
-  .forEach((b) => b.addEventListener("click", () => modal.showModal()));
+  .forEach((b) => b.addEventListener("click", () => { modal.showModal(); document.body.classList.add('modal-open'); }));
 document
   .querySelector(".close-modal")
   .addEventListener("click", () => modal.close());
 modal.addEventListener("click", (e) => {
-  if (e.target === modal) modal.close();
+  const rect = modal.getBoundingClientRect();
+  if (e.target === modal && (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom)) modal.close();
 });
 document.getElementById("quote-form").addEventListener("submit", (e) => {
   e.preventDefault();
-  e.currentTarget.hidden = true;
-  document.querySelector(".form-success").hidden = false;
+  const data = new FormData(e.currentTarget);
+  const body = [data.get('name'), data.get('phone'), '', data.get('request')].join('\n');
+  window.location.href = 'mailto:infosdsanitaire@gmail.com?subject=' + encodeURIComponent('Demande de devis — SD Sanitaire') + '&body=' + encodeURIComponent(body);
 });
 const projects = document.querySelectorAll(".project-grid img");
 document.querySelectorAll(".filter").forEach((b) =>
@@ -348,5 +364,69 @@ document.querySelectorAll(".filter").forEach((b) =>
         b.dataset.filter !== "all" && p.dataset.category !== b.dataset.filter,
       ),
     );
+    animateEntrance([...projects].filter(p => !p.classList.contains('hidden')));
   }),
 );
+
+modal.addEventListener('close', () => document.body.classList.remove('modal-open'));
+document.addEventListener('keydown', e => {
+ if (e.key === 'Escape' && nav.classList.contains('open')) { setMenuOpen(false); menuButton.focus(); }
+});
+document.querySelectorAll('.filter').forEach(button => {
+ button.setAttribute('aria-pressed', String(button.classList.contains('active')));
+ button.addEventListener('click', () => document.querySelectorAll('.filter').forEach(item => item.setAttribute('aria-pressed', String(item === button))));
+});
+document.querySelectorAll('img').forEach(img => {
+ const fallback = () => {
+  if (img.dataset.fallback) return;
+  img.dataset.fallback = 'true';
+  img.src = img.dataset.category === 'heating' ? 'images/Heating.png' : 'images/Renovation.png';
+ };
+ img.addEventListener('error', fallback);
+ if (img.complete && !img.naturalWidth) fallback();
+});
+const sectionObserver = new IntersectionObserver(entries => {
+ for (const entry of entries) if (entry.isIntersecting) {
+  document.querySelectorAll('.main-nav a').forEach(link => {
+   const active = link.hash === '#' + entry.target.id;
+   link.classList.toggle('active', active);
+   if (active) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current');
+  });
+ }
+}, { rootMargin: '-15% 0px -60% 0px' });
+document.querySelectorAll('main > section[id]').forEach(section => sectionObserver.observe(section));
+
+// Avoid repeating the call button while the hero actions are on screen.
+const mobileContact = document.querySelector('.mobile-contact');
+const heroActionsObserver = new IntersectionObserver(([entry]) => {
+  mobileContact.classList.toggle('hero-actions-visible', entry.isIntersecting);
+}, { threshold: 0.1 });
+heroActionsObserver.observe(document.querySelector('.hero-actions'));
+
+function animateEntrance(elements) {
+  elements.forEach((element, index) => {
+    // Cancel a previous entrance when filters are changed rapidly.
+    element.getAnimations().forEach(animation => animation.cancel());
+    const animation = element.animate([
+      { opacity: 0, transform: 'translateY(28px)' },
+      { opacity: 1, transform: 'translateY(0)' }
+    ], { duration: 750, delay: Math.min(index, 3) * 90,
+      easing: 'cubic-bezier(.22, 1, .36, 1)', fill: 'backwards' });
+    animation.finished.catch(() => {});
+  });
+}
+// Scroll entrances are explicitly enabled for this site, including reduced-motion
+// previews. Content remains visible without JavaScript or between animations.
+const visibleEntrances = new WeakSet();
+const entranceObserver = new IntersectionObserver(entries => {
+  const entering = [];
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) visibleEntrances.delete(entry.target);
+    else if (entry.intersectionRatio >= 0.12 && !visibleEntrances.has(entry.target)) {
+      visibleEntrances.add(entry.target);
+      entering.push(entry.target);
+    }
+  });
+  animateEntrance(entering);
+}, { threshold: [0, 0.12], rootMargin: '0px 0px -24px 0px' });
+document.querySelectorAll('.section-heading, .service-card, .bricoles-banner, .about-gallery, .about-copy, .project-grid img, .cta-inner').forEach(element => entranceObserver.observe(element));

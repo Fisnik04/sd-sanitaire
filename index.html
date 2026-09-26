@@ -17,10 +17,10 @@
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="logo" href="#accueil"><img src="images/logo.png" alt="SD Sanitaire Sàrl" class="site-logo" /></a><button
-        class="menu-button" type="button" aria-label="Menu" aria-expanded="false">
+        class="menu-button" type="button" aria-label="Menu" aria-controls="main-nav" aria-expanded="false">
         <i data-lucide="menu"></i>
       </button>
-      <nav class="main-nav">
+      <nav class="main-nav" id="main-nav" aria-label="Navigation principale">
         <a class="active" href="#accueil" data-i18n="home">Accueil</a><a href="#services" data-i18n="services">Nos
           services</a><a href="#realisations" data-i18n="projects">Réalisations</a><a href="#apropos"
           data-i18n="about">À propos</a><a href="#contact" data-i18n="contact">Contact</a>
@@ -30,7 +30,7 @@
         <option value="de">DE</option>
         <option value="it">IT</option>
         <option value="en">EN</option>
-      </select><a class="phone-pill" href="tel:0794877528"><i data-lucide="phone"></i><span>079 487 75 28</span></a>
+      </select><a class="phone-pill" href="tel:+41794877528" aria-label="Téléphone : +41 79 487 75 28"><i data-lucide="phone"></i><span>079 487 75 28</span></a>
     </div>
   </header>
   <main>
@@ -40,8 +40,7 @@
           <span>CH</span><span data-i18n="region">LAUSANNE &amp; CANTON DE VAUD</span>
         </p>
         <h1 data-i18n="heroTitle">
-          Votre spécialiste <em>sanitaire</em> à Lausanne et dans le canton de
-          Vaud.
+          Votre spécialiste <em>sanitaire</em> à Lausanne.
         </h1>
         <p class="hero-copy" data-i18n="heroCopy">
           Dépannage, entretien et rénovation pour les particuliers comme les
@@ -89,7 +88,7 @@
         </div>
         <div class="service-grid">
           <article class="service-card">
-            <img src="images/repairs.png"
+            <img loading="lazy" decoding="async" src="images/repairs.png"
               alt="Robinet" /><span><i data-lucide="wrench"></i></span>
             <h3 data-i18n="repair">Dépannage</h3>
             <p data-i18n="repairText">
@@ -97,7 +96,7 @@
             </p>
           </article>
           <article class="service-card">
-            <img src="images/Maintenance.png"
+            <img loading="lazy" decoding="async" src="images/Maintenance.png"
               alt="Plomberie" /><span><i data-lucide="settings"></i></span>
             <h3 data-i18n="maintenance">Entretien</h3>
             <p data-i18n="maintenanceText">
@@ -105,7 +104,7 @@
             </p>
           </article>
           <article class="service-card">
-            <img src="images/Renovation.png"
+            <img loading="lazy" decoding="async" src="images/Renovation.png"
               alt="Salle de bain" /><span><i data-lucide="bath"></i></span>
             <h3 data-i18n="renovation">Rénovation</h3>
             <p data-i18n="renovationText">
@@ -113,7 +112,7 @@
             </p>
           </article>
           <article class="service-card">
-            <img src="images/Heating.png"
+            <img loading="lazy" decoding="async" src="images/Heating.png"
               alt="Chauffage" /><span><i data-lucide="flame"></i></span>
             <h3 data-i18n="heating">Chauffage</h3>
             <p data-i18n="heatingText">
@@ -121,13 +120,13 @@
             </p>
           </article>
           <article class="service-card">
-            <img src="images/Waterdamage.png"
+            <img loading="lazy" decoding="async" src="images/Waterdamage.png"
               alt="Fuite" /><span><i data-lucide="waves"></i></span>
             <h3 data-i18n="water">Dégâts des eaux</h3>
             <p data-i18n="waterText">Recherche et réparation de fuites.</p>
           </article>
           <article class="service-card">
-            <img src="images/Drainclearing.png"
+            <img loading="lazy" decoding="async" src="images/Drainclearing.png"
               alt="Canalisation" /><span><i data-lucide="circle-dot-dashed"></i></span>
             <h3 data-i18n="drain">Débouchage</h3>
             <p data-i18n="drainText">
@@ -137,7 +136,7 @@
         </div>
         <div class="bricoles-banner">
           <div class="bricoles-info">
-            <h3><i data-lucide="tool"></i> <span data-i18n="bricolesTitle">Petites interventions & bricoles
+            <h3><i data-lucide="wrench"></i> <span data-i18n="bricolesTitle">Petites interventions & bricoles
                 sanitaires</span></h3>
             <ul class="bricoles-list">
               <li><i data-lucide="check-circle-2"></i> <span data-i18n="bricole1">Installation machine à laver</span>
@@ -156,7 +155,7 @@
     </section>
     <section class="about" id="apropos">
       <div class="about-gallery">
-        <img class="main-photo"
+        <img loading="lazy" decoding="async" class="main-photo"
           src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=1200&q=85"
           alt="Salle de bain" />
         <div class="gallery-note">
@@ -206,11 +205,11 @@
           <img data-category="bath"
             src="https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=1200&q=90"
             alt="Rénovation de salle de bain moderne" loading="lazy" /><img data-category="bath"
-            src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=90"
+            src="images/Renovation.png"
             alt="Salle de bain contemporaine avec douche" loading="lazy" /><img data-category="sanitary"
             src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=1200&q=90"
             alt="Installation sanitaire et rénovation de salle de bain" loading="lazy" /><img data-category="heating"
-            src="https://images.unsplash.com/photo-76GLjrPlunQ?auto=format&fit=crop&w=1200&q=90"
+            src="images/Heating.png"
             alt="Installation technique et chauffage" loading="lazy" /><img data-category="bath"
             src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=90"
             alt="Lavabo et aménagement sanitaire moderne" loading="lazy" /><img data-category="repair"
@@ -243,12 +242,12 @@
       <div>
         <b data-i18n="footerAddress">Adresse & Contact</b>
         <p style="margin-top: 10px"><i data-lucide="map-pin"></i>Rue de la Borde 36<br />1018 Lausanne, Suisse</p>
-        <p><i data-lucide="phone"></i><a href="tel:0794877528">079 487 75 28</a></p>
+        <p><i data-lucide="phone"></i><a href="tel:+41794877528" aria-label="Téléphone : +41 79 487 75 28">079 487 75 28</a></p>
         <p><i data-lucide="mail"></i><a href="mailto:infosdsanitaire@gmail.com">infosdsanitaire@gmail.com</a></p>
         <div class="socials" style="margin-top: 15px;">
-          <a href="https://www.facebook.com/profile.php?id=100077352018840" target="_blank" aria-label="Facebook"><i
+          <a href="https://www.facebook.com/profile.php?id=100077352018840" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i
               data-lucide="facebook"></i></a>
-          <a href="https://wa.me/41794877528" target="_blank" aria-label="WhatsApp"><i
+          <a href="https://wa.me/41794877528" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i
               data-lucide="message-circle"></i></a>
           <a href="mailto:infosdsanitaire@gmail.com" aria-label="Email"><i data-lucide="mail"></i></a>
         </div>
@@ -271,29 +270,25 @@
         légales | Protection des données</span>
     </div>
   </footer>
-  <dialog class="quote-modal">
-    <button class="close-modal"><i data-lucide="x"></i></button>
+  <div class="mobile-contact"><a class="button primary" href="tel:+41794877528"><i data-lucide="phone"></i><span data-i18n="call">Appeler maintenant</span></a></div>
+  <dialog class="quote-modal" aria-labelledby="quote-title">
+    <button class="close-modal" type="button" aria-label="Fermer / Close"><i data-lucide="x"></i></button>
     <p class="eyebrow" data-i18n="freeQuote">DEVIS GRATUIT</p>
-    <h2 data-i18n="quote">Demander une offre</h2>
+    <h2 id="quote-title" data-i18n="quote">Demander une offre</h2>
     <p data-i18n="modalCopy">
-      Décrivez brièvement votre besoin. Nous vous recontactons rapidement.
+      Ce formulaire prépare un email. Vérifiez puis envoyez-le depuis votre messagerie,
+      ou contactez-nous au +41 79 487 75 28.
     </p>
     <form id="quote-form">
-      <label><span data-i18n="name">Nom complet</span><input required placeholder="Votre nom" /></label><label><span
-          data-i18n="phone">Téléphone</span><input required placeholder="+41 ..." /></label><label><span
-          data-i18n="request">Votre demande</span><textarea required rows="4" data-i18n-placeholder="requestPlaceholder"
+      <label><span data-i18n="name">Nom complet</span><input name="name" autocomplete="name" required placeholder="Votre nom" /></label><label><span
+          data-i18n="phone">Téléphone</span><input name="phone" type="tel" autocomplete="tel" required placeholder="+41 ..." /></label><label><span
+          data-i18n="request">Votre demande</span><textarea name="request" required rows="4" data-i18n-placeholder="requestPlaceholder"
           placeholder="Dépannage, rénovation, entretien..."></textarea></label><button class="button primary"
         type="submit">
-        <span data-i18n="send">Envoyer la demande</span><i data-lucide="arrow-right"></i>
+        <span data-i18n="send">Préparer un email</span><i data-lucide="arrow-right"></i>
       </button>
     </form>
-    <div class="form-success" hidden>
-      <i data-lucide="circle-check"></i>
-      <h3 data-i18n="thanks">Merci pour votre demande.</h3>
-      <p data-i18n="thanksCopy">
-        Nous vous contacterons dans les plus brefs délais.
-      </p>
-    </div>
+
   </dialog>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script defer src="script.js"></script>
